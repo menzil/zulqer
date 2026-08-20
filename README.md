@@ -36,4 +36,4 @@ Zulqer is designed and maintained by Ruzaji Yasin.
 
 Repository: [github.com/menzil/zulqer](https://github.com/menzil/zulqer)
 
-在线演示：[orhan.cn](https://orhan.cn/)
+Online demo: [orhan.cn](https://orhan.cn/)
