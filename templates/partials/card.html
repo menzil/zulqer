@@ -1,0 +1,27 @@
+<article class="article-card{% if featured %} article-card-featured{% elif large %} card-large{% endif %}">
+  {% if featured %}
+  <a class="card-media" href="{{ page.permalink }}" aria-label="阅读：{{ page.title }}">
+    {% if page.extra.cover %}<img src="{{ page.extra.cover }}" alt="" loading="eager">{% else %}<img src="{{ config.extra.zulqer.default_cover }}" alt="" loading="eager">{% endif %}
+    <span class="card-media-shade"></span>
+    <span class="card-featured-copy">
+      <span class="hero-chips"><span class="chip chip-gold">{{ config.extra.zulqer.featured_label }}</span>{% if page.taxonomies.tags and page.taxonomies.tags | length > 0 %}<span class="chip">{{ page.taxonomies.tags[0] }}</span>{% endif %}</span>
+      <span class="card-title">{{ page.title }}</span>
+      {% if page.description %}<span class="card-excerpt">{{ page.description }}</span>{% endif %}
+      <span class="hero-meta"><time datetime="{{ page.date | date(format="%Y-%m-%d") }}">{{ page.date | date(format="%Y-%m-%d") }}</time><span aria-hidden="true">·</span><span>{{ page.reading_time }} {{ config.extra.zulqer.minutes_label }}</span><span class="hero-read">{{ config.extra.zulqer.read_label }} →</span></span>
+    </span>
+  </a>
+  {% else %}
+  <a class="article-card-link" href="{{ page.permalink }}" aria-label="阅读：{{ page.title }}">
+    <div class="card-visual">
+      {% if page.extra.cover %}<img src="{{ page.extra.cover }}" alt="" loading="lazy">{% endif %}
+      <span class="card-visual-shade"></span>
+      {% if page.taxonomies.tags and page.taxonomies.tags | length > 0 %}<span class="chip">{{ page.taxonomies.tags[0] }}</span>{% endif %}
+    </div>
+    <div class="card-body">
+    <h2 class="card-title">{{ page.title }}</h2>
+    {% if page.description %}<p class="card-excerpt">{{ page.description }}</p>{% endif %}
+    <div class="card-meta"><time datetime="{{ page.date | date(format="%Y-%m-%d") }}">{{ page.date | date(format="%Y-%m-%d") }}</time><span>{{ page.reading_time }} {{ config.extra.zulqer.minutes_label }}</span></div>
+    </div>
+  </a>
+  {% endif %}
+</article>

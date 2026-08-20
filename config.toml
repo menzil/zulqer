@@ -1,0 +1,48 @@
+title = "Zulqer"
+base_url = "https://example.com"
+default_language = "en"
+build_search_index = true
+taxonomies = [{ name = "tags", feed = true }]
+
+[search]
+include_title = true
+include_description = false
+include_path = false
+include_content = true
+index_format = "elasticlunr_json"
+
+[markdown]
+
+[markdown.highlighting]
+theme = "catppuccin-mocha"
+
+[extra.zulqer]
+html_lang = "zh-CN"
+repository_url = "https://github.com/menzil/zulqer"
+description = "长篇写作与技术笔记"
+default_cover = "https://images.unsplash.com/photo-1521194263619-39ecc5b55c61?w=1600&h=900&fit=crop&auto=format"
+featured_label = "最新文章"
+all_tags_label = "全部"
+articles_label = "文章"
+archive_label = "归档"
+about_label = "关于"
+tags_label = "标签"
+search_label = "搜索"
+minutes_label = "分钟"
+read_label = "阅读"
+previous_label = "上一篇"
+next_label = "下一篇"
+search_placeholder = "搜索文章标题或正文"
+search_empty_label = "没有找到相关内容"
+menu_label = "打开菜单"
+copy_label = "复制代码"
+copied_label = "已复制"
+close_image_label = "关闭图片"
+previous_image_label = "上一张图片"
+next_image_label = "下一张图片"
+navigation = [
+    { path = "/", label = "文章" },
+    { path = "/archive/", label = "归档" },
+    { path = "/tags/", label = "标签" },
+    { path = "/about/", label = "关于" },
+]

@@ -1,0 +1,9 @@
+{% extends "zulqer/templates/base.html" %}
+{% block body_class %}about-page{% endblock %}
+{% block main %}
+<section class="about shell">
+  {% set posts_section = get_section(path="posts/_index.md") %}{% set oldest = posts_section.pages | last %}
+  <div><div class="about-mark" aria-hidden="true"><span>Z</span></div><div class="about-stats"><div><small>始于</small><strong>{{ oldest.year }}</strong></div><div><small>文章</small><strong>{{ posts_section.pages | length }}</strong></div></div></div>
+  <div class="about-copy"><span class="eyebrow">{{ config.extra.zulqer.about_label }}</span><h1>{{ config.author }}</h1><i></i><div class="post-content">{{ page.content | safe }}</div></div>
+</section>
+{% endblock %}

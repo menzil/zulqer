@@ -1,0 +1,11 @@
+name = "Zulqer"
+description = "A dark editorial Zola theme for long-form writing and technical notes."
+license = "MIT"
+min_version = "0.23.0"
+homepage = "https://github.com/menzil/zulqer"
+
+[extra]
+repository = "https://github.com/menzil/zulqer.git"
+
+[author]
+name = "Ruzaji Yasin"

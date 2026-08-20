@@ -1,0 +1,6 @@
+<footer class="site-footer">
+  <div class="shell footer-inner">
+    <span>© {{ now() | date(format="%Y") }} {{ config.author }} · <a class="theme-link" href="{{ config.extra.zulqer.repository_url }}">Zulqer</a></span>
+    <nav class="footer-links" aria-label="页脚导航"><a href="{{ get_url(path='@/_index.md') }}">{{ config.extra.zulqer.articles_label }}</a><a href="{{ get_url(path='@/archive/_index.md') }}">{{ config.extra.zulqer.archive_label }}</a><a href="{{ get_url(path='@/static/about.md') }}">{{ config.extra.zulqer.about_label }}</a></nav>
+  </div>
+</footer>

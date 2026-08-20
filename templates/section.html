@@ -1,0 +1,8 @@
+{% extends "zulqer/templates/base.html" %}
+{% block body_class %}listing-page{% endblock %}
+{% block main %}
+<section class="listing shell">
+  <div class="listing-heading"><span class="eyebrow">{{ config.extra.zulqer.articles_label }}</span><h1>{{ section.title }}</h1>{% if section.description %}<p>{{ section.description }}</p>{% endif %}</div>
+  <div class="article-grid article-grid-listing">{% for page in section.pages %}{% if page.date %}{% set featured = false %}{% set large = false %}{% include "zulqer/templates/partials/card.html" %}{% endif %}{% endfor %}</div>
+</section>
+{% endblock %}

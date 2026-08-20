@@ -1,0 +1,6 @@
+{% extends "zulqer/templates/base.html" %}
+{% block body_class %}taxonomy-page{% endblock %}
+{% block main %}
+<section class="taxonomy shell"><div class="listing-heading"><span class="eyebrow">{{ config.extra.zulqer.tags_label }}</span><h1>{{ config.extra.zulqer.tags_label }}</h1></div><div class="taxonomy-grid">{% for term in terms %}<a href="{{ term.permalink }}"><strong>{{ term.name }}</strong><span>{{ term.pages | length }} {{ config.extra.zulqer.articles_label }}</span><span aria-hidden="true">↗</span></a>{% endfor %}</div></section>
+{% endblock %}
+

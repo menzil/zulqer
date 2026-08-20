@@ -1,0 +1,10 @@
+{% extends "zulqer/templates/base.html" %}
+{% block body_class %}search-page{% endblock %}
+{% block main %}
+<section class="search shell">
+  <div class="listing-heading"><span class="eyebrow">{{ config.extra.zulqer.search_label }}</span><h1>{{ page.title }}</h1></div>
+  <div class="search-box"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4.2 4.2"></path></svg><input id="searchInput" type="search" autocomplete="off" placeholder="{{ config.extra.zulqer.search_placeholder }}" data-search-index="{{ get_url(path='search_index.en.json') }}"></div>
+  <p class="search-hint" id="searchHint">{{ config.extra.zulqer.search_empty_label }}</p>
+  <ol class="search-results" id="searchResults"></ol>
+</section>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "zulqer/templates/base.html" %}
+{% block body_class %}home-page{% endblock %}
+{% block main %}
+{% if paginator.current_index == 1 and paginator.pages | length > 0 %}
+  {% set featured = paginator.pages[0] %}
+  <section class="home-hero shell-wide">
+    {% set page = featured %}{% set featured = true %}{% include "zulqer/templates/partials/card.html" %}
+  </section>
+{% endif %}
+{% set tags = get_taxonomy(kind="tags") %}
+{% if tags and tags.items | length > 0 %}
+<div class="tag-bar"><div class="tag-strip" aria-label="按标签浏览">
+    <a class="tag-filter is-active" href="{{ get_url(path='@/_index.md') }}">{{ config.extra.zulqer.all_tags_label }}</a>
+    {% for tag in tags.items %}{% if loop.index <= 8 %}<a class="tag-filter" href="{{ tag.permalink }}">{{ tag.name }}</a>{% endif %}{% endfor %}
+</div></div>
+{% endif %}
+<section class="home-content">
+  {% if paginator.current_index == 1 and paginator.pages | length > 1 %}
+  <div class="article-grid">
+    {% for page in paginator.pages[1:] %}{% set featured = false %}{% set large = loop.first %}{% include "zulqer/templates/partials/card.html" %}{% endfor %}
+  </div>
+  {% elif paginator.current_index > 1 %}
+  <div class="article-grid">
+    {% for page in paginator.pages %}{% set featured = false %}{% set large = loop.first %}{% include "zulqer/templates/partials/card.html" %}{% endfor %}
+  </div>
+  {% endif %}
+  {% include "zulqer/templates/partials/pagination.html" %}
+</section>
+{% endblock %}

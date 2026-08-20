@@ -1,0 +1,5 @@
+<div class="post-meta">
+  <time datetime="{{ page.date | date(format="%Y-%m-%d") }}">{{ page.date | date(format="%Y-%m-%d") }}</time>
+  {% if page.reading_time > 0 %}<span aria-hidden="true">·</span><span>{{ page.reading_time }} {{ config.extra.zulqer.minutes_label }}</span>{% endif %}
+</div>
+

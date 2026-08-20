@@ -1,0 +1,8 @@
+{% if paginator.previous or paginator.next %}
+<nav class="pagination" aria-label="分页">
+  {% if paginator.previous %}<a href="{{ paginator.previous }}" rel="prev">← {{ config.extra.zulqer.previous_label }}</a>{% else %}<span></span>{% endif %}
+  <span>{{ paginator.current_index }} / {{ paginator.number_pagers }}</span>
+  {% if paginator.next %}<a href="{{ paginator.next }}" rel="next">{{ config.extra.zulqer.next_label }} →</a>{% else %}<span></span>{% endif %}
+</nav>
+{% endif %}
+

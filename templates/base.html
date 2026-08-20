@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="{{ config.extra.zulqer.html_lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{% if page and page.description %}{{ page.description }}{% elif section and section.description %}{{ section.description }}{% else %}{{ config.extra.zulqer.description }}{% endif %}">
+  <title>{% if page and page.title %}{{ page.title }} · {% elif section and section.title %}{{ section.title }} · {% endif %}{{ config.title }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ get_url(path='zulqer/css/theme.css') }}">
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}" data-copy-label="{{ config.extra.zulqer.copy_label }}" data-copied-label="{{ config.extra.zulqer.copied_label }}" data-close-image-label="{{ config.extra.zulqer.close_image_label }}" data-previous-image-label="{{ config.extra.zulqer.previous_image_label }}" data-next-image-label="{{ config.extra.zulqer.next_image_label }}">
+  <header class="site-header" data-site-header>
+    <div class="shell nav-shell">
+      <a class="brand" href="{{ get_url(path='@/_index.md') }}" aria-label="{{ config.title }}">
+        <span class="brand-mark" aria-hidden="true">Z</span>
+        <span class="brand-name">{{ config.title }}</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="{{ config.extra.zulqer.menu_label }}">
+        <span></span><span></span><span></span>
+      </button>
+      {% set active_path = current_path | default(value="/") %}
+      {% set path_parts = active_path | split(pat="/") %}
+      <nav id="site-nav" class="site-nav" aria-label="主导航">
+        <a{% if active_path == "/" or path_parts[1] == "posts" %} class="is-active"{% endif %} href="{{ get_url(path='@/_index.md') }}">{{ config.extra.zulqer.articles_label }}</a>
+        <a{% if path_parts[1] == "archive" %} class="is-active"{% endif %} href="{{ get_url(path='@/archive/_index.md') }}">{{ config.extra.zulqer.archive_label }}</a>
+        <a{% if path_parts[1] == "about" %} class="is-active"{% endif %} href="{{ get_url(path='@/static/about.md') }}">{{ config.extra.zulqer.about_label }}</a>
+      </nav>
+    </div>
+  </header>
+  <main>{% block main %}{% endblock %}</main>
+  {% include "zulqer/templates/partials/footer.html" %}
+  <script src="{{ get_url(path='elasticlunr.min.js') }}"></script>
+  <script src="{{ get_url(path='zulqer/js/theme.js') }}" defer></script>
+</body>
+</html>

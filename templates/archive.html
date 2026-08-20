@@ -1,0 +1,15 @@
+{% extends "zulqer/templates/base.html" %}
+{% block body_class %}archive-page{% endblock %}
+{% block main %}
+<section class="archive shell">
+  {% set posts_section = get_section(path="posts/_index.md") %}
+  {% set oldest = posts_section.pages | last %}
+  <div class="listing-heading"><span class="eyebrow">{{ config.extra.zulqer.archive_label }}</span><h1>{{ posts_section.pages | length }} 篇文章，<em>始于 {{ oldest.year }}。</em></h1></div>
+  {% set yearly_posts = posts_section.pages | group_by(attribute="year") %}
+  {% for year, posts in yearly_posts %}
+  <section class="archive-year"><div class="archive-year-title"><span>{{ year }}</span><i></i></div>
+    <div class="archive-list">{% for post in posts %}<a class="archive-row" href="{{ post.permalink }}"><time datetime="{{ post.date | date(format="%Y-%m-%d") }}">{{ post.date | date(format="%m-%d") }}</time><strong>{{ post.title }}</strong>{% if post.taxonomies.tags and post.taxonomies.tags | length > 0 %}<span class="chip">{{ post.taxonomies.tags[0] }}</span>{% endif %}<span>{% if post.reading_time > 0 %}{{ post.reading_time }} {{ config.extra.zulqer.minutes_label }}{% endif %}</span></a>{% endfor %}</div>
+  </section>
+  {% endfor %}
+</section>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "zulqer/templates/base.html" %}
+{% block body_class %}post-page{% endblock %}
+{% block extra_head %}<meta property="og:type" content="article">{% endblock %}
+{% block main %}
+<div class="reading-progress-track"><div class="reading-progress" data-reading-progress></div></div>
+<article class="post" data-article>
+  {% if page.extra.cover %}<figure class="post-cover"><img src="{{ page.extra.cover }}" alt="" loading="eager"><span></span></figure>{% else %}<div class="post-spacer"></div>{% endif %}
+  <div class="post-shell">
+  <header class="post-header{% if page.extra.cover %} has-cover{% endif %}">
+    <a class="post-back" href="{{ get_url(path='@/_index.md') }}">← 返回</a>
+    <div class="post-info">
+      {% if page.taxonomies.tags and page.taxonomies.tags | length > 0 %}<a class="chip chip-gold" href="{{ get_taxonomy_url(kind='tags', name=page.taxonomies.tags[0]) }}">{{ page.taxonomies.tags[0] }}</a>{% endif %}
+      <time datetime="{{ page.date | date(format="%Y-%m-%d") }}">{{ page.date | date(format="%Y-%m-%d") }}</time><span aria-hidden="true">·</span><span>{{ page.reading_time }} {{ config.extra.zulqer.minutes_label }}</span>
+    </div>
+    <h1>{{ page.title }}</h1>
+    {% if page.description %}<p class="post-subtitle">{{ page.description }}</p>{% endif %}
+  </header>
+  <div class="post-divider"></div>
+  <div class="post-content">{{ page.content | safe }}</div>
+  <footer class="post-footer">
+    {% if page.taxonomies.tags %}<div class="post-tags">{% for tag in page.taxonomies.tags %}<a href="{{ get_taxonomy_url(kind='tags', name=tag) }}">{{ tag }}</a>{% endfor %}</div>{% endif %}
+    <nav class="post-nav" aria-label="文章导航">
+      {% if page.lower %}<a href="{{ page.lower.permalink }}"><span>{{ config.extra.zulqer.previous_label }}</span><strong>{{ page.lower.title }}</strong></a>{% else %}<span></span>{% endif %}
+      {% if page.higher %}<a class="post-nav-next" href="{{ page.higher.permalink }}"><span>{{ config.extra.zulqer.next_label }}</span><strong>{{ page.higher.title }}</strong></a>{% else %}<span></span>{% endif %}
+    </nav>
+  </footer>
+  </div>
+</article>
+{% endblock %}
