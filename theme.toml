@@ -3,6 +3,7 @@ description = "A dark editorial Zola theme for long-form writing and technical n
 license = "MIT"
 min_version = "0.23.0"
 homepage = "https://github.com/menzil/zulqer"
+demo = "https://orhan.cn/"
 
 [extra]
 repository = "https://github.com/menzil/zulqer.git"
