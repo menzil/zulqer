@@ -10,6 +10,9 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ get_url(path='zulqer/css/theme.css') }}">
   {% block extra_head %}{% endblock %}
+  {% if config.extra.zulqer.analytics_script_url and config.extra.zulqer.analytics_entity %}
+  <script type="module" data-entity="{{ config.extra.zulqer.analytics_entity }}" src="{{ config.extra.zulqer.analytics_script_url }}"></script>
+  {% endif %}
 </head>
 <body class="{% block body_class %}{% endblock %}" data-copy-label="{{ config.extra.zulqer.copy_label }}" data-copied-label="{{ config.extra.zulqer.copied_label }}" data-close-image-label="{{ config.extra.zulqer.close_image_label }}" data-previous-image-label="{{ config.extra.zulqer.previous_image_label }}" data-next-image-label="{{ config.extra.zulqer.next_image_label }}">
   <header class="site-header" data-site-header>
