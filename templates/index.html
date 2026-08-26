@@ -21,7 +21,7 @@
   </div>
   {% elif paginator.current_index > 1 %}
   <div class="article-grid">
-    {% for page in paginator.pages %}{% set featured = false %}{% set large = loop.first %}{% include "zulqer/templates/partials/card.html" %}{% endfor %}
+    {% for page in paginator.pages %}{% set featured = false %}{% set large = false %}{% include "zulqer/templates/partials/card.html" %}{% endfor %}
   </div>
   {% endif %}
   {% include "zulqer/templates/partials/pagination.html" %}
