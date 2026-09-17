@@ -1,7 +1,11 @@
 title = "Zulqer"
+author = "Ruzaji Yasin"
 base_url = "https://example.com"
 default_language = "en"
 build_search_index = true
+generate_feeds = true
+feed_filenames = ["atom.xml"]
+exclude_paginated_pages_in_sitemap = "all"
 taxonomies = [{ name = "tags", feed = true }]
 
 [search]

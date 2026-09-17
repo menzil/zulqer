@@ -1,0 +1,63 @@
+{% set seo_description = config.extra.zulqer.description %}
+{% if page and page.description %}
+  {% set_global seo_description = page.description %}
+{% elif section and section.description %}
+  {% set_global seo_description = section.description %}
+{% endif %}
+{% set seo_title = config.title %}
+{% if page and page.title %}
+  {% set_global seo_title = page.title ~ " · " ~ config.title %}
+{% elif section and section.title %}
+  {% set_global seo_title = section.title ~ " · " ~ config.title %}
+{% elif term %}
+  {% set_global seo_title = term.name ~ " · " ~ config.title %}
+{% elif current_path == "/tags/" %}
+  {% set_global seo_title = config.extra.zulqer.tags_label ~ " · " ~ config.title %}
+{% elif seo_is_not_found %}
+  {% set_global seo_title = "404 · " ~ config.title %}
+{% endif %}
+{% if paginator and paginator.current_index > 1 %}
+  {% set_global seo_title = seo_title ~ " · 第 " ~ paginator.current_index ~ " 页" %}
+{% endif %}
+{% set is_search_page = page and page.extra.is_search_page %}
+<title>{{ seo_title }}</title>
+<meta name="description" content="{{ seo_description }}">
+{% if is_search_page %}
+<meta name="robots" content="noindex, follow">
+{% elif seo_is_not_found %}
+<meta name="robots" content="noindex, nofollow">
+{% else %}
+<meta name="robots" content="index, follow">
+{% endif %}
+{% if not seo_is_not_found %}<link rel="canonical" href="{{ current_url }}">{% endif %}
+<meta property="og:title" content="{{ seo_title }}">
+<meta property="og:description" content="{{ seo_description }}">
+<meta property="og:type" content="{% if page and page.date %}article{% else %}website{% endif %}">
+{% if not seo_is_not_found %}<meta property="og:url" content="{{ current_url }}">{% endif %}
+<meta property="og:site_name" content="{{ config.title }}">
+<meta property="og:locale" content="{{ config.extra.zulqer.html_lang | replace(from='-', to='_') }}">
+{% if page and page.date %}
+<meta property="article:author" content="{{ config.author }}">
+<meta property="article:published_time" content="{{ page.date }}">
+{% if page.updated %}<meta property="article:modified_time" content="{{ page.updated }}">{% endif %}
+{% if page.taxonomies.tags %}{% for tag in page.taxonomies.tags %}<meta property="article:tag" content="{{ tag }}">
+{% endfor %}{% endif %}
+{% endif %}
+{% if page and page.extra.cover %}
+{% if page.extra.cover is starting_with(pat="https://") %}
+  {% set cover_url = page.extra.cover %}
+{% elif page.extra.cover is starting_with(pat="/") %}
+  {% set cover_url = get_url(path=page.extra.cover) %}
+{% else %}
+  {{ throw(message="page.extra.cover must be a root path or an HTTPS URL") }}
+{% endif %}
+<meta property="og:image" content="{{ cover_url }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{{ cover_url }}">
+{% else %}
+<meta name="twitter:card" content="summary">
+{% endif %}
+<meta name="twitter:title" content="{{ seo_title }}">
+<meta name="twitter:description" content="{{ seo_description }}">
+{% if config.generate_feeds %}{% for feed_filename in config.feed_filenames %}<link rel="alternate" type="{% if feed_filename == 'atom.xml' %}application/atom+xml{% else %}application/rss+xml{% endif %}" title="{{ config.title }}" href="{{ get_url(path=feed_filename) }}">
+{% endfor %}{% endif %}
