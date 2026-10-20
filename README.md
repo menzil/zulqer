@@ -1,6 +1,6 @@
 # Zulqer
 
-Zulqer is a dark editorial theme for Zola 0.23 and later. It is designed for long-form writing and technical notes, with responsive article cards, build-time code highlighting, archive and taxonomy pages, search, reading progress, code copy buttons, and an image lightbox.
+Zulqer is an editorial theme for Zola 0.23 and later with persistent dark and light modes. It is designed for long-form writing and technical notes, with responsive article cards, build-time code highlighting, archive and taxonomy pages, search, reading progress, code copy buttons, and an image lightbox.
 
 ![Zulqer home page](screenshot.png)
 

@@ -6,6 +6,7 @@
   {% block seo %}{% set seo_is_not_found = false %}{% include "zulqer/templates/partials/seo.html" %}{% endblock %}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script>if (localStorage.getItem("zulqer-theme") === "light") document.documentElement.dataset.theme = "light";</script>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ get_url(path='zulqer/css/theme.css') }}">
   {% block extra_head %}{% endblock %}
@@ -13,23 +14,29 @@
   <script type="module" data-entity="{{ config.extra.zulqer.analytics_entity }}" src="{{ config.extra.zulqer.analytics_script_url }}"></script>
   {% endif %}
 </head>
-<body class="{% block body_class %}{% endblock %}" data-copy-label="{{ config.extra.zulqer.copy_label }}" data-copied-label="{{ config.extra.zulqer.copied_label }}" data-close-image-label="{{ config.extra.zulqer.close_image_label }}" data-previous-image-label="{{ config.extra.zulqer.previous_image_label }}" data-next-image-label="{{ config.extra.zulqer.next_image_label }}">
+<body class="{% block body_class %}{% endblock %}" data-copy-label="{{ config.extra.zulqer.copy_label }}" data-copied-label="{{ config.extra.zulqer.copied_label }}" data-light-theme-label="{{ config.extra.zulqer.light_theme_label }}" data-dark-theme-label="{{ config.extra.zulqer.dark_theme_label }}" data-close-image-label="{{ config.extra.zulqer.close_image_label }}" data-previous-image-label="{{ config.extra.zulqer.previous_image_label }}" data-next-image-label="{{ config.extra.zulqer.next_image_label }}">
   <header class="site-header" data-site-header>
     <div class="shell nav-shell">
       <a class="brand" href="{{ get_url(path='@/_index.md') }}" aria-label="{{ config.title }}">
         <span class="brand-mark" aria-hidden="true">Z</span>
         <span class="brand-name">{{ config.title }}</span>
       </a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="{{ config.extra.zulqer.menu_label }}">
-        <span></span><span></span><span></span>
-      </button>
       {% set active_path = current_path | default(value="/") %}
       {% set path_parts = active_path | split(pat="/") %}
-      <nav id="site-nav" class="site-nav" aria-label="主导航">
-        <a{% if active_path == "/" or path_parts[1] == "posts" %} class="is-active"{% endif %} href="{{ get_url(path='@/_index.md') }}">{{ config.extra.zulqer.articles_label }}</a>
-        <a{% if path_parts[1] == "archive" %} class="is-active"{% endif %} href="{{ get_url(path='@/archive/_index.md') }}">{{ config.extra.zulqer.archive_label }}</a>
-        <a{% if path_parts[1] == "about" %} class="is-active"{% endif %} href="{{ get_url(path='@/static/about.md') }}">{{ config.extra.zulqer.about_label }}</a>
-      </nav>
+      <div class="nav-actions">
+        <nav id="site-nav" class="site-nav" aria-label="主导航">
+          <a{% if active_path == "/" or path_parts[1] == "posts" %} class="is-active"{% endif %} href="{{ get_url(path='@/_index.md') }}">{{ config.extra.zulqer.articles_label }}</a>
+          <a{% if path_parts[1] == "archive" %} class="is-active"{% endif %} href="{{ get_url(path='@/archive/_index.md') }}">{{ config.extra.zulqer.archive_label }}</a>
+          <a{% if path_parts[1] == "about" %} class="is-active"{% endif %} href="{{ get_url(path='@/static/about.md') }}">{{ config.extra.zulqer.about_label }}</a>
+        </nav>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="{{ config.extra.zulqer.light_theme_label }}" title="{{ config.extra.zulqer.light_theme_label }}">
+          <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
+          <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="{{ config.extra.zulqer.menu_label }}">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </header>
   <main>{% block main %}{% endblock %}</main>

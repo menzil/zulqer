@@ -1,6 +1,30 @@
 (function () {
   "use strict";
 
+  function setupThemeToggle() {
+    var toggle = document.querySelector("[data-theme-toggle]");
+    if (!toggle) return;
+    var root = document.documentElement;
+    var syncToggle = function () {
+      var isLight = root.dataset.theme === "light";
+      var label = isLight ? document.body.dataset.darkThemeLabel : document.body.dataset.lightThemeLabel;
+      toggle.setAttribute("aria-label", label);
+      toggle.setAttribute("title", label);
+      toggle.setAttribute("aria-pressed", String(isLight));
+    };
+    toggle.addEventListener("click", function () {
+      var theme = root.dataset.theme === "light" ? "dark" : "light";
+      if (theme === "light") {
+        root.dataset.theme = "light";
+      } else {
+        delete root.dataset.theme;
+      }
+      localStorage.setItem("zulqer-theme", theme);
+      syncToggle();
+    });
+    syncToggle();
+  }
+
   function setupNavigation() {
     var header = document.querySelector("[data-site-header]");
     var toggle = document.querySelector(".menu-toggle");
@@ -154,5 +178,5 @@
     input.addEventListener("input", function () { window.clearTimeout(timer); timer = window.setTimeout(function () { var term = input.value.trim(); if (!term) { resultsList.innerHTML = ""; hint.hidden = false; return; } loadIndex().then(function (index) { render(index.search(term, { bool: "AND", fields: { title: { boost: 2 }, body: { boost: 1 } } })); }); }, 160); });
   }
 
-  document.addEventListener("DOMContentLoaded", function () { setupNavigation(); setupReadingProgress(); setupCodeCopy(); setupImageLightbox(); setupSearch(); });
+  document.addEventListener("DOMContentLoaded", function () { setupThemeToggle(); setupNavigation(); setupReadingProgress(); setupCodeCopy(); setupImageLightbox(); setupSearch(); });
 }());
