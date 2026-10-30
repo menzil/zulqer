@@ -29,6 +29,9 @@
           <a{% if path_parts[1] == "archive" %} class="is-active"{% endif %} href="{{ get_url(path='@/archive/_index.md') }}">{{ config.extra.zulqer.archive_label }}</a>
           <a{% if path_parts[1] == "about" %} class="is-active"{% endif %} href="{{ get_url(path='@/static/about.md') }}">{{ config.extra.zulqer.about_label }}</a>
         </nav>
+        <a class="nav-search" href="{{ get_url(path='@/static/search.md') }}" aria-label="{{ config.extra.zulqer.search_label }}" title="{{ config.extra.zulqer.search_label }}"{% if path_parts[1] == "search" %} aria-current="page"{% endif %}>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4.2 4.2"></path></svg>
+        </a>
         <button class="theme-toggle" type="button" data-theme-toggle aria-label="{{ config.extra.zulqer.light_theme_label }}" title="{{ config.extra.zulqer.light_theme_label }}">
           <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
           <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>

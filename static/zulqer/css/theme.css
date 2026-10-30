@@ -70,14 +70,13 @@ img { display: block; max-width: 100%; }
 .site-nav a:hover, .site-nav a:focus-visible { color: var(--text); }
 .site-nav a.is-active { background: var(--surface-2); color: var(--text); }
 .nav-actions { display: flex; align-items: center; gap: 4px; }
-.theme-toggle { display: grid; width: 44px; height: 44px; flex: 0 0 44px; place-items: center; border: 0; border-radius: 50%; background: transparent; color: var(--muted); cursor: pointer; transition: background .15s ease, color .15s ease, transform .1s ease; }
-.theme-toggle:hover, .theme-toggle:focus-visible { background: var(--surface-2); color: var(--text); }
-.theme-toggle:active { transform: scale(.92); }
+.nav-search, .theme-toggle { display: grid; width: 44px; height: 44px; flex: 0 0 44px; place-items: center; border: 0; border-radius: 50%; background: transparent; color: var(--muted); cursor: pointer; transition: background .15s ease, color .15s ease, transform .1s ease; }
+.nav-search:hover, .nav-search:focus-visible, .nav-search[aria-current="page"], .theme-toggle:hover, .theme-toggle:focus-visible { background: var(--surface-2); color: var(--text); }
+.nav-search:active, .theme-toggle:active { transform: scale(.92); }
 .theme-icon { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .theme-icon-moon { display: none; }
 [data-theme="light"] .theme-icon-sun { display: none; }
 [data-theme="light"] .theme-icon-moon { display: block; }
-.nav-search { display: grid; width: 28px; height: 28px; place-items: center; }
 .nav-search svg, .search-box svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; }
 .menu-toggle { display: none; border: 0; background: transparent; color: var(--text); padding: 9px; }
 .menu-toggle span { display: block; width: 20px; height: 1px; background: currentColor; transition: transform .2s ease; }
